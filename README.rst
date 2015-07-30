@@ -31,7 +31,7 @@ By using docker-volumes, this setup holds the database and OwnCloud files in the
        +--var
           +--lib
              +--postgresql
-                +-- data   -> mounted to /var/lib/mysql
+                +-- data   -> mounted to /var/lib/postgresql/data
   docker-compose-[sqlite|mysql|postgres].yml
   rights.sh                -> set the access rights for ./oc/volumes/config & data
 
@@ -47,9 +47,11 @@ Modify Docker-Compose
 - Postgres configuration kindly provided by ohugues (https://github.com/tkock/owncloud-docker-compose/issues/1)
 
 - local testing:
+
   - uncomment "ports 8000:80" lines
 
 - behind nginx-proxy
+
   - configure ``VIRTUAL_HOST`` setting.
 
 - if you want to include the jwilder/nginx-proxy into the docker-compose.yml, please see https://github.com/tkock/owncloud-docker-compose/issues/1 for an example.
@@ -87,9 +89,10 @@ Reconfigurations or modifications::
   docker-compose rm
   docker-compose up
 
-If starting/connecting to MySQL fails and you want to start over:
+If starting/connecting to the MySQL database fails and you want to start over:
 
 - do a ``docker-compose rm`` to remove the current container(s)
 - do a ``rm -rf *`` in "./mysql/volumes/var/lib/mysql/" to remove the MySQL database files.
+
   - similar in postgres...
 
