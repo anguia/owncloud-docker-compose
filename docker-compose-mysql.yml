@@ -1,0 +1,38 @@
+# docker-compose file for MySQL
+owncloud:
+  image: l3iggs/owncloud
+  restart: always
+  # ports:
+  #   - "8000:80"
+  links:
+    - mysql
+  environment:
+    VIRTUAL_HOST: myhost.mydomain,www.myhost.mydomain
+    START_MYSQL: false
+    TARGET_SUBDIR: /
+  volumes:
+    # requires proper authorizations, see rights.sh
+    # https://github.com/l3iggs/docker-owncloud/wiki/Store-your-data-outside-of-the-container
+    - owncloud/volumes/data:/usr/share/webapps/owncloud/data
+    - owncloud/volumes/config:/etc/webapps/owncloud/config
+
+mysql:
+  # https://registry.hub.docker.com/_/mysql/
+  image: mysql:latest
+  restart: always
+  mem_limit: 128m
+  expose:
+     - "3306"
+  # ports:
+  #    - "3307:3306"
+  environment:
+    MYSQL_DATABASE: owncloud
+    MYSQL_ROOT_PASSWORD: rootpass
+    MYSQL_USER: user
+    MYSQL_PASSWORD: userpass
+  volumes:
+    - mysql/volumes/var/lib/mysql:/var/lib/mysql
+
+  # --skip-name-resolve
+  # avoids: ""[Warning] IP address '172.17.0.60' could not be resolved: Name or service not known""
+  command: mysqld --skip-name-resolve
