@@ -8,7 +8,7 @@ owncloud:
     - mysql
   environment:
     VIRTUAL_HOST: myhost.mydomain,www.myhost.mydomain
-    START_MYSQL: false
+    START_MYSQL: 'false'
     TARGET_SUBDIR: /
   volumes:
     # requires proper authorizations, see rights.sh
