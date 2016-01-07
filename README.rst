@@ -2,7 +2,7 @@
 Run Owncloud with docker-compose
 ================================
 
-Copyright (c) 2015 Thomas Kock, License: MIT (see LICENSE.MIT.txt)
+Copyright (c) 2016 Thomas Kock, License: MIT (see LICENSE.MIT.txt)
 
 Uses the Dockerfile provided by https://github.com/l3iggs/docker-owncloud
 
@@ -19,6 +19,9 @@ By using docker-volumes, this setup holds the database and OwnCloud files in the
 
   mysql
     +--volumes
+       +--etc
+          +--mysql
+             +--conf.d     -> mounted to /etc/mysql/conf.d
        +--var
           +--lib
              +--mysql      -> mounted to /var/lib/mysql
@@ -74,6 +77,9 @@ MySQL container is setting itself up.)
      -v <path-to->/mysql/volumes/var/lib/mysql:/var/lib/mysql \
      -p 3307:3306 \
      mysql:latest
+
+
+The current configuration provides a ``my-override.cnf`` file to reduce the memory footprint of mysql. Remove or modify according to your requirements.
 
 
 Startup

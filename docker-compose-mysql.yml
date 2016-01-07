@@ -13,8 +13,8 @@ owncloud:
   volumes:
     # requires proper authorizations, see rights.sh
     # https://github.com/l3iggs/docker-owncloud/wiki/Store-your-data-outside-of-the-container
-    - owncloud/volumes/data:/usr/share/webapps/owncloud/data
-    - owncloud/volumes/config:/etc/webapps/owncloud/config
+    - ./owncloud/volumes/data:/usr/share/webapps/owncloud/data
+    - ./owncloud/volumes/config:/etc/webapps/owncloud/config
 
 mysql:
   # https://registry.hub.docker.com/_/mysql/
@@ -31,7 +31,8 @@ mysql:
     MYSQL_USER: user
     MYSQL_PASSWORD: userpass
   volumes:
-    - mysql/volumes/var/lib/mysql:/var/lib/mysql
+    - ./mysql/volumes/var/lib/mysql:/var/lib/mysql
+    - ./mysql/volumes/etc/mysql/conf.d:/etc/mysql/conf.d
 
   # --skip-name-resolve
   # avoids: ""[Warning] IP address '172.17.0.60' could not be resolved: Name or service not known""

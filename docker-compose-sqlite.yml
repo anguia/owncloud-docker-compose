@@ -13,5 +13,5 @@ owncloud:
   volumes:
     # requires proper authorizations, see rights.sh
     # https://github.com/l3iggs/docker-owncloud/wiki/Store-your-data-outside-of-the-container
-    - owncloud/volumes/data:/usr/share/webapps/owncloud/data
-    - owncloud/volumes/config:/etc/webapps/owncloud/config
+    - ./owncloud/volumes/data:/usr/share/webapps/owncloud/data
+    - ./owncloud/volumes/config:/etc/webapps/owncloud/config
