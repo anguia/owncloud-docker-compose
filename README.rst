@@ -51,7 +51,8 @@ Modify Docker-Compose
 
 - local testing:
 
-  - uncomment "ports 8000:80" lines
+  - uncomment "ports 8000:80" lines or
+  - uncomment "ports 8443:443" line and use one of the SSL generation methods mentioned in the l3iggs/owncloud docs. (The cert self generation method is OK for quick test.)
 
 - behind nginx-proxy
 
@@ -85,7 +86,7 @@ The current configuration provides a ``my-override.cnf`` file to reduce the memo
 Startup
 -------
 
-Use ``rights.sh`` to setup the directory chmod/chgrp for the mounted volumes.
+Use ``rights.sh`` to setup the directory chmod/chgrp for the mounted volumes and remove the .gitignore files in the database directories.
 
 Initial startup with ``docker-compose up``, later with ``docker-compose start``.
 
